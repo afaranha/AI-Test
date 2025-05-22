@@ -11,3 +11,11 @@
         - tmux
         - vim
         - git
+
+    - name: Copy tmux.conf to user's home directory
+      copy:
+        src: tmux.conf
+        dest: ~/.tmux.conf
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0644'
