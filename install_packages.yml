@@ -1,0 +1,13 @@
+---
+- name: Install required packages on new servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install packages
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - tmux
+        - vim
+        - git
