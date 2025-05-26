@@ -35,7 +35,7 @@ fi
 echo "Git and Ansible installed successfully."
 
 # --- 2. Clone the AI-Test repository ---
-REPO_URL="https://github.com/afaranha/AI-Test.git"
+REPO_URL="git@github.com:afaranha/AI-Test.git"
 REPO_DIR="AI-Test"
 
 echo "Cloning the AI-Test repository..."
