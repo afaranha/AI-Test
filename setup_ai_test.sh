@@ -63,7 +63,12 @@ PLAYBOOK_NAME="setup_server_packages.yml"
 
 echo "Running the Ansible playbook '$PLAYBOOK_NAME' on localhost..."
 
-# Run the playbook targeting localhost using the 'local' connection plugin
+# --- Add local SSH key to authorized_keys for passwordless access (if needed) ---
+echo "Setting up SSH key for localhost access..."
+[ -f ~/.ssh/id_rsa.pub ] && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys || echo "Warning: ~/.ssh/id_rsa.pub not found, skipping key copy."
+echo "SSH key setup complete."
+
+# --- Run the setup_server_packages.yml playbook on localhost ---
 ansible-playbook -i hosts.ini "$PLAYBOOK_NAME"
 
 if [ $? -ne 0 ]; then
