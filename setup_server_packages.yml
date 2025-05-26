@@ -13,6 +13,15 @@
         - git
         - nodejs
 
+    - name: Install uv (and uvx) via recommended script for ansible_user
+      ansible.builtin.shell: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+      args:
+        # 'creates' makes this task idempotent: it won't re-run if uv already exists
+        # Assuming uv installs into ~/.cargo/bin or ~/.local/bin relative to the user's home.
+        # ansible_user_dir is a fact that holds the home directory of the ansible_user.
+        creates: "{{ ansible_user_dir }}/.cargo/bin/uv"
+
     - name: Copy tmux.conf to user's home directory
       copy:
         src: tmux.conf
