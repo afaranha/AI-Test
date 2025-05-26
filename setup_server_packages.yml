@@ -40,6 +40,8 @@
         # Assuming uv installs into ~/.cargo/bin or ~/.local/bin relative to the user's home.
         # ansible_user_dir is a fact that holds the home directory of the ansible_user.
         creates: "{{ ansible_user_dir }}/.cargo/bin/uv"
+      become: true
+      become_user: "{{ ansible_user }}"
 
     - name: Copy tmux.conf to user's home directory
       copy:
