@@ -12,23 +12,25 @@
         - vim
         - git
 
-    - name: Add NodeSource dnf repository (Fedora)
-      ansible.builtin.yum_repository: # yum_repository works for dnf too
-        name: nodesource
-        description: Node.js from NodeSource
-        baseurl: "https://rpm.nodesource.com/pub_{{ node_version }}.x/el/{{ ansible_distribution_major_version }}/$basearch/"
-        gpgcheck: yes
-        gpgkey: https://rpm.nodesource.com/gpgkey/nodesource.gpg.key
-        enabled: yes
-      when: ansible_os_family == "RedHat" # Fedora is part of RedHat family
+    # Node.js Installation for Fedora/RedHat
+    - name: Run NodeSource setup script for RPM-based systems
+      ansible.builtin.shell: |
+        curl -fsSL https://rpm.nodesource.com/setup_{{ node_version }}.x | bash -
+      args:
+        # Prevents re-running the setup script if the nodesource repo file already exists
+        creates: /etc/yum.repos.d/nodesource-nodejs.repo
+      when: ansible_os_family == "RedHat"
       vars:
         node_version: "20" # You can change this to your desired Node.js major version (e.g., "18", "20", "22")
 
-    - name: Install Node.js and npm (Fedora)
-      ansible.builtin.package:
+    - name: Install Node.js and npm
+      package:
         name: nodejs
         state: present
-      when: ansible_os_family == "RedHat"
+      # This task runs for both Debian/Ubuntu and RedHat after their respective repo setups
+      # No 'when' needed here if it follows platform-specific repo setup.
+      # However, for clarity, keep 'when' clauses for each package type.
+      when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
 
     - name: Install uv (and uvx) via recommended script for ansible_user
       ansible.builtin.shell: |
