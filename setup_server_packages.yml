@@ -11,6 +11,7 @@
         - tmux
         - vim
         - git
+        - nodejs
 
     - name: Copy tmux.conf to user's home directory
       copy:
