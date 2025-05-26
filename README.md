@@ -42,3 +42,29 @@ The `setup_server_packages.yml` playbook automates the installation of fundament
 -   `tmux.conf`: The tmux configuration file to be copied.
 -   `new_server_requirements.txt`: Additional server requirements.
 -   `README.md`: This README file.
+
+---
+
+## Quick Setup with `setup_ai_test.sh`
+
+For a quick setup on a fresh Linux server (Ubuntu/Debian or Fedora), you can use the `setup_ai_test.sh` script. This script will install Git and Ansible, clone this repository, and then run the `setup_server_packages.yml` playbook on your localhost.
+
+**Step-by-step instructions:**
+
+1.  **Download the script**:
+    Use `curl` to download the `setup_ai_test.sh` script directly from the repository:
+    ```bash
+    curl -o setup_ai_test.sh [https://raw.githubusercontent.com/afaranha/AI-Test/main/setup_ai_test.sh](https://raw.githubusercontent.com/afaranha/AI-Test/main/setup_ai_test.sh)
+    ```
+
+2.  **Make the script executable**:
+    Grant execute permissions to the downloaded script:
+    ```bash
+    chmod +x setup_ai_test.sh
+    ```
+
+3.  **Run the script**:
+    Execute the script. This will perform the installation of Git and Ansible, clone the repository, and run the playbook:
+    ```bash
+    ./setup_ai_test.sh
+    ```
