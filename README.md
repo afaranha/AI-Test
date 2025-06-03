@@ -19,7 +19,7 @@ The `setup_server_packages.yml` playbook automates the installation of fundament
 
 1.  **Clone the Repository**:
     ```bash
-    git clone [https://github.com/afaranha/AI-Test.git](https://github.com/afaranha/AI-Test.git)
+    git clone https://github.com/afaranha/AI-Test.git
     cd AI-Test
     ```
 
@@ -54,7 +54,7 @@ For a quick setup on a fresh Linux server (Ubuntu/Debian or Fedora), you can use
 1.  **Download the script**:
     Use `curl` to download the `setup_ai_test.sh` script directly from the repository:
     ```bash
-    curl -o setup_ai_test.sh [https://raw.githubusercontent.com/afaranha/AI-Test/main/setup_ai_test.sh](https://raw.githubusercontent.com/afaranha/AI-Test/main/setup_ai_test.sh)
+    curl -o setup_ai_test.sh https://raw.githubusercontent.com/afaranha/AI-Test/main/setup_ai_test.sh
     ```
 
 2.  **Make the script executable**:
